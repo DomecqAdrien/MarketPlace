@@ -50,7 +50,7 @@ class SellHouse extends React.Component {
                 </label>
                 <label>
                     Nombre de pièces :
-                    <input type="text" name="nbRooms"  onChange={this.handleChange}/>
+                    <input type="number" name="nbRooms"  onChange={this.handleChange}/>
                 </label>
                 <label>
                     Surface :

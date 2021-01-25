@@ -23,6 +23,14 @@ contract MarketPlace {
         return houses.length;
     }
 
+    function getCountAvailableHouses() public view returns (uint){
+        uint count = 0;
+        for(uint i = 0; i < houses.length; i++){
+            if(!houses[i].isSold) count++;
+        }
+        return count;
+    }
+
     function getIsSold(uint _idHouse) public view returns (bool){
         return houses[_idHouse].isSold;
     }
@@ -44,6 +52,17 @@ contract MarketPlace {
         houses[_idHouse] = house;
     }
 
+    //function getHousesByBuyer(string _adressBuyer) public returns 
+
+    function sellExistingHouse(uint _idHouse, uint _price) public {
+        House memory house = houses[_idHouse];
+        house.isSold = false;
+        house.price = _price;
+        house.adresseSeller = house.adresseBuyer;
+        house.adresseBuyer = "";
+        houses[_idHouse] = house;
+    }
+
     function sellHouse (
         uint _price,
         uint _surface,
@@ -60,7 +79,7 @@ contract MarketPlace {
 
     function buyHouse(uint _idHouse, string memory _adressBuyer) public payable {
         House memory house = houses[_idHouse];
-        house.isSold = false;
+        house.isSold = true;
         house.adresseBuyer = _adressBuyer;
         houses[_idHouse] = house;
     }

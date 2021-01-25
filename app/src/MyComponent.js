@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import CountHouses from "./marketplace/countHouses";
 import SellHouse from "./marketplace/SellHouse";
 import ShowHouses from "./marketplace/showHouses";
+import Header from "./components/Header";
 
 const { AccountData, ContractData, ContractForm } = newContextComponents;
   
@@ -15,6 +16,7 @@ export default ({ accounts, drizzle, drizzleState }) => {
   return (
     <div className="App">    
       <div className="section">
+      <Header/>
       <ShowHouses
         drizzle={drizzle}
         drizzleState={drizzleState}
@@ -28,7 +30,7 @@ export default ({ accounts, drizzle, drizzleState }) => {
         drizzleState={drizzleState}
       />
       
-        <h2>Active Account</h2>
+      {/*  <h2>Active Account</h2>
         <AccountData
           drizzle={drizzle}
           drizzleState={drizzleState}
@@ -53,7 +55,7 @@ export default ({ accounts, drizzle, drizzleState }) => {
             method="storedData"
           />
         </p>
-        <ContractForm drizzle={drizzle} contract="SimpleStorage" method="set" />
+        <ContractForm drizzle={drizzle} contract="SimpleStorage" method="set" />*/}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import SellHouse from "./marketplace/SellHouse";
 import ShowHouses from "./marketplace/showHouses";
 
 const drizzle = new Drizzle(drizzleOptions);
+console.log(drizzle)
 //<DrizzleProvider store={store} options={drizzleOptions}></DrizzleProvider>
 const App = () => {
   return (
@@ -24,7 +25,6 @@ const App = () => {
           }
 
           return (
-            
             <MyComponent drizzle={drizzle} drizzleState={drizzleState} />
           )
         }}

@@ -1,15 +1,44 @@
-const SimpleStorage = artifacts.require("SimpleStorage");
+const  assert  = require("assert");
 
-contract("SimpleStorage", accounts => {
-  it("...should store the value 89.", async () => {
-    const simpleStorageInstance = await SimpleStorage.deployed();
+const MarketPlace = artifacts.require("./MarketPlace.sol")
 
-    // Set value of 89
-    await simpleStorageInstance.set(89, { from: accounts[0] });
+contract("MarketPlace",accounts => {
+  it("should store an house with price = 90", async () => {
+    const mp = await MarketPlace.deployed();
 
-    // Get stored value
-    const storedData = await simpleStorageInstance.storedData.call();
+    await mp.sellHouse(90,50, 90,"a","a","a","a","a");
 
-    assert.equal(storedData, 89, "The value 89 was not stored.");
-  });
-});
+    const storedData = await mp.getPrice(0);
+    console.log(storedData)
+
+    assert.strictEqual(storedData, 90, "non")
+
+    
+
+  })
+  it("should return false", async () => {
+
+    const mp = await MarketPlace.deployed();
+
+    await mp.sellHouse(90,50, 90,"a","a","a","a","a");
+
+    const isSold = await mp.getIsSold(0);
+    console.log(isSold)
+
+
+    assert.strictEqual(isSold, false, "non")
+  })
+
+  it("should return true", async () => {
+
+    const mp = await MarketPlace.deployed();
+
+    await mp.sellHouse(90,50, 90,"a","a","a","a","a");
+    await mp.buyHouse(0,"newAdress")
+    const isSold = await mp.getIsSold(0);
+    console.log(isSold)
+
+
+    assert.strictEqual(isSold, false, "non")
+  })
+})
